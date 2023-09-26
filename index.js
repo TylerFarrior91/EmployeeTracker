@@ -24,9 +24,36 @@ const viewAllRoles = () => {
     })
 }
 const addEmployee = () => {
-    db.query("INSERT * FROM employee", function (err, res) {
-        if (err) throw err;
-        console.table(res);
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "first_name",
+            message: "What is the employee's first name?"
+        },
+        {
+            type: "input",
+            name: "last_name",
+            message: "What is the employee's last name?"
+        },
+        {
+            type: "input",
+            name: "role_id",
+            message: "What is the employee's role ID?"
+        },
+        {
+            type: "input",
+            name: "manager_id",
+            message: "What is the employee's manager ID?"
+        }
+    ]).then((res) => {
+        db.query("INSERT INTO employee SET ?",
+        {
+            first_name: res.first_name,
+            last_name: res.last_name,
+            role_id: res.role_id,
+            manager_id: res.manager_id
+        })
+        console.log("Employee added successfully!");
         start()
     })
 }
