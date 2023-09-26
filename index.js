@@ -74,12 +74,35 @@ const addDepartment = () => {
     })
 }
 const addRole = () => {
-    db.query("INSERT * FROM role", function (err, res) {
-        if (err) throw err;
-        console.table(res);
-        start()
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "title",
+            message: "What is the role title?"
+        },
+        {
+            type: "input",
+            name: "salary",
+            message: "What is the role salary?"
+        },
+        {
+            type: "input",
+            name: "department_id",
+            message: "What is the role department ID?"
+        }
+    ]).then((res) => {
+        db.query("INSERT INTO role SET?",
+            {
+                title: res.title,
+                salary: res.salary,
+                department_id: res.department_id
+            })
+            console.log("Role added successfully!");
+            start()
     })
+    
 }
+
 const updateEmployeeRole = () => {
     db.query("UPDATE employee SET? WHERE?", function (err, res) {
         if (err) throw err;
