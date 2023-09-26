@@ -47,20 +47,29 @@ const addEmployee = () => {
         }
     ]).then((res) => {
         db.query("INSERT INTO employee SET ?",
-        {
-            first_name: res.first_name,
-            last_name: res.last_name,
-            role_id: res.role_id,
-            manager_id: res.manager_id
-        })
+            {
+                first_name: res.first_name,
+                last_name: res.last_name,
+                role_id: res.role_id,
+                manager_id: res.manager_id
+            })
         console.log("Employee added successfully!");
         start()
     })
 }
 const addDepartment = () => {
-    db.query("INSERT * FROM department", function (err, res) {
-        if (err) throw err;
-        console.table(res);
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "department_name",
+            message: "What is the department name?"
+        }
+    ]).then((res) => {
+        db.query("INSERT INTO department SET ?",
+            {
+                name: res.department_name
+            })
+        console.log("Department added successfully!");
         start()
     })
 }
