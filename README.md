@@ -1,7 +1,7 @@
 # Employee Tracker
 
 # video link
-
+https://drive.google.com/file/d/1V1of1ZQ77qrNQtO_AIjeUmBLTclNU8oG/view
 # instuctions 
 1. Run your "schema.sql" command
 2. Run your "app.js" command with node
